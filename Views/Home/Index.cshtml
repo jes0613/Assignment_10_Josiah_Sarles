@@ -2,7 +2,47 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model IEnumerable<Bowlers>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Middle Init
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Zip
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model)
+                { 
+                    <partial name="BowlerListInfo" model="x" />
+
+                }
+            </tbody>
+        </table>
+    </div>
+
 </div>

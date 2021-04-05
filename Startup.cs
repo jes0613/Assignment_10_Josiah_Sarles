@@ -1,6 +1,8 @@
+using Assignment_10_Josiah_Sarles.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,9 @@ namespace Assignment_10_Josiah_Sarles
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<BowlingLeagueContext>(options =>
+               options.UseSqlite(Configuration["ConnectionStrings:BowlersDbConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,9 +53,15 @@ namespace Assignment_10_Josiah_Sarles
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("teamid",
+                    "Team/{teamid}/{teamname}",
+                    new { Controller = "Home", action = "Index" }
+                    );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            
             });
         }
     }
