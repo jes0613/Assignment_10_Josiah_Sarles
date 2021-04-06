@@ -16,8 +16,7 @@ namespace Assignment_10_Josiah_Sarles.Components
         }
         public IViewComponentResult Invoke()
         {
-            
-
+   
             return View(_context.Teams
                 .Distinct()
                 .OrderBy(x => x)
