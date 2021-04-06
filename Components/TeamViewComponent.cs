@@ -14,6 +14,8 @@ namespace Assignment_10_Josiah_Sarles.Components
         {
             _context = con;
         }
+
+        //Selects the teams to be displayed in the Team View Component
         public IViewComponentResult Invoke()
         {
    

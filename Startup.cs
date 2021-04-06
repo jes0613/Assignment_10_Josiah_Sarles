@@ -53,6 +53,8 @@ namespace Assignment_10_Josiah_Sarles
 
             app.UseEndpoints(endpoints =>
             {
+
+                //Added these two routes
                 endpoints.MapControllerRoute("teamid",
                     "Team{teamid}/{teamname}",
                     new { Controller = "Home", action = "Index" }

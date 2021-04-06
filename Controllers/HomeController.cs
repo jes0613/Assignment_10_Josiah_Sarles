@@ -13,6 +13,8 @@ namespace Assignment_10_Josiah_Sarles.Controllers
 {
     public class HomeController : Controller
     {
+
+        //variables for the controller, database, and pagesize
         private readonly ILogger<HomeController> _logger;
         private readonly BowlingLeagueContext _context;
         public int PageSize = 5;
@@ -23,6 +25,8 @@ namespace Assignment_10_Josiah_Sarles.Controllers
             _context = con;
         }
 
+        // This action returns a viewModel containing the list of bowlers and their information,
+        // the pagination info of the view, and the current team selected. 
         public IActionResult Index(long? teamId, int pageNum = 1)
         {
             ViewBag.SelectedTeam = teamId;
@@ -44,11 +48,6 @@ namespace Assignment_10_Josiah_Sarles.Controllers
                 CurrentTeam = _context.Teams
                     .FromSqlInterpolated($"SELECT * FROM Teams Where TeamId = {teamId}")
             });
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
